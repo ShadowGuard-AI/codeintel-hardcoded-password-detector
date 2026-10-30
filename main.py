@@ -4,7 +4,6 @@ import re
 import math
 import logging
 import sys
-import subprocess
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -27,7 +26,7 @@ def calculate_entropy(data):
             entropy += - p_x*math.log2(p_x)
     return entropy
 
-def scan_file(filepath):
+def scan_file(filepath, entropy_threshold=4.0):
     """
     Scans a single file for hardcoded passwords and API keys.
     """
@@ -48,7 +47,7 @@ def scan_file(filepath):
         value = match.group(2)
         entropy = calculate_entropy(value)
         logging.warning(f"Possible hardcoded password found in {filepath}: Key Name: {key_name}, Value: {value}, Entropy: {entropy}")
-        if entropy > 4:
+        if entropy > entropy_threshold:
             logging.warning(f"High entropy detected for password in {filepath}. May be a false positive, review carefully.")
 
     # Search for API key patterns
@@ -58,17 +57,17 @@ def scan_file(filepath):
         value = match.group(2)
         entropy = calculate_entropy(value)
         logging.warning(f"Possible hardcoded API key found in {filepath}: Key Name: {key_name}, Value: {value}, Entropy: {entropy}")
-        if entropy > 4:
+        if entropy > entropy_threshold:
             logging.warning(f"High entropy detected for API Key in {filepath}. May be a false positive, review carefully.")
 
-def scan_directory(directory):
+def scan_directory(directory, entropy_threshold=4.0):
     """
     Recursively scans a directory for files and then scans each file.
     """
     for root, _, files in os.walk(directory):
         for file in files:
             filepath = os.path.join(root, file)
-            scan_file(filepath)
+            scan_file(filepath, entropy_threshold)
 
 
 def setup_argparse():
@@ -90,11 +89,13 @@ def main():
     parser = setup_argparse()
     args = parser.parse_args()
 
-    # Configure logging
+    # Configure logging. Logging was already configured at import time, and
+    # basicConfig does nothing once the root logger has handlers, so the
+    # --log_file branch silently kept logging to stdout unless forced.
     if args.log_file:
-        logging.basicConfig(filename=args.log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        logging.basicConfig(filename=args.log_file, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', force=True)
     else:
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', force=True)
     
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
@@ -109,9 +110,9 @@ def main():
 
     # Determine if it's a file or a directory
     if os.path.isfile(path):
-        scan_file(path)
+        scan_file(path, args.entropy_threshold)
     elif os.path.isdir(path):
-        scan_directory(path)
+        scan_directory(path, args.entropy_threshold)
     else:
         logging.error(f"Error: '{path}' is neither a file nor a directory.")
         sys.exit(1)

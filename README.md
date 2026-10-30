@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # codeintel-Hardcoded-Password-Detector
 A command-line tool that scans code for hardcoded passwords and API keys using regex and entropy analysis. - Focused on Tools for static code analysis, vulnerability scanning, and code quality assurance
 

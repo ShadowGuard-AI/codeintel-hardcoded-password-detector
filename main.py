@@ -46,7 +46,7 @@ def scan_file(filepath, entropy_threshold=4.0):
         key_name = match.group(1)
         value = match.group(2)
         entropy = calculate_entropy(value)
-        logging.warning(f"Possible hardcoded password found in {filepath}: Key Name: {key_name}, Value: {value}, Entropy: {entropy}")
+        logging.warning(f"Possible hardcoded password found in {filepath}: Key Name: {key_name}, Value: {'*' * len(value)} (length {len(value)}), Entropy: {entropy}")
         if entropy > entropy_threshold:
             logging.warning(f"High entropy detected for password in {filepath}. May be a false positive, review carefully.")
 
@@ -56,7 +56,7 @@ def scan_file(filepath, entropy_threshold=4.0):
         key_name = match.group(1)
         value = match.group(2)
         entropy = calculate_entropy(value)
-        logging.warning(f"Possible hardcoded API key found in {filepath}: Key Name: {key_name}, Value: {value}, Entropy: {entropy}")
+        logging.warning(f"Possible hardcoded API key found in {filepath}: Key Name: {key_name}, Value: {'*' * len(value)} (length {len(value)}), Entropy: {entropy}")
         if entropy > entropy_threshold:
             logging.warning(f"High entropy detected for API Key in {filepath}. May be a false positive, review carefully.")
 

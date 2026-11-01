@@ -20,6 +20,9 @@ def calculate_entropy(data):
     if not data:
         return 0
     entropy = 0
+    # I count by scanning the value once per possible character, so
+    # a long value costs 256 passes. Values here are short, and I
+    # keep the plain version over a Counter for readability.
     for x in range(256):
         p_x = float(data.count(chr(x)))/len(data)
         if p_x > 0:
@@ -46,6 +49,9 @@ def scan_file(filepath, entropy_threshold=4.0):
         key_name = match.group(1)
         value = match.group(2)
         entropy = calculate_entropy(value)
+        # I mask the value and print only its length. The length still
+        # tells a reader something, but the log can be shared in a bug
+        # report without handing over the secret it just found.
         logging.warning(f"Possible hardcoded password found in {filepath}: Key Name: {key_name}, Value: {'*' * len(value)} (length {len(value)}), Entropy: {entropy}")
         if entropy > entropy_threshold:
             logging.warning(f"High entropy detected for password in {filepath}. May be a false positive, review carefully.")
@@ -65,6 +71,9 @@ def scan_directory(directory, entropy_threshold=4.0):
     Recursively scans a directory for files and then scans each file.
     """
     for root, _, files in os.walk(directory):
+        # I send every file to the scanner, whatever its type. A binary
+        # file fails its text read inside scan_file and is logged as an
+        # error there, rather than being skipped quietly here.
         for file in files:
             filepath = os.path.join(root, file)
             scan_file(filepath, entropy_threshold)

@@ -1,12 +1,10 @@
-![Night street with no lettering: one kettle near and large in the nearest lit window with thin steam rising, a corner lantern, an owl on a roof ridge, cups on sills in two other lit windows, dark houses, and a thin moon](intro-banner.png)
+![The carved desk lid close up at an angle, a heart and groups of tally nicks catching the raking light with the brass inkwell at the frame edge and the desk row soft behind](intro-banner.png)
 
 # codeintel-Hardcoded-Password-Detector
 
 Night watch log treatment: the title is set in Bungee on a coffee black plate ruled as a night watch log giving the hour, with a small kettle beside this first part of the page only, and the kettle stays at punctuation size as the section marker throughout.
 
-![One kettle on a small stove ring: round body, short spout, plain handle, clear lid, diner night neon on the lit side, chrome rim and handle, coffee black shadow side, and one small pink enamel chip on the lid, with the name in the night watch log hand below](logo.png)
-
-![One street at 3 a.m.: most windows dark, a few lit, a kettle in the nearest lit window on its stove with thin steam, cups on the sill, a wall clock at the small hours, an owl on a roof ridge, a lantern at the corner, a distant sign giving neon light only, and the title once on the watch log board by the lantern](banner.png)
+![A row of old lift lid school desks in a quiet classroom in raking window light, the nearest lid carved with a heart and tally nicks, a brass inkwell and a plain slate on it](banner.png)
 
 ![Night street in three bands: lit windows change rarely as one goes dark and later another lights, an owl on a roof ridge blinks at long intervals, and a kettle in the nearest window gives a thin line of steam that rises, thins, fades, and thickens briefly when the kettle sings](scene.svg)
 

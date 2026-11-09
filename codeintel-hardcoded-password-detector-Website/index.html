@@ -3,23 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>codeintel-hardcoded-password-detector: The Insomniac Kettle Census</title>
-<meta name="description" content="A night watch log in six watches: two patterns walk the code at 3 a.m., every value is masked with stars, and entropy is a note in the margin, never a gate.">
-<style>@font-face{font-family:'Bungee';src:url('fonts/BungeeF') format('truetype');}@font-face{font-family:'Cabin.ttf';src:url('fonts/Cabin.ttf') format('truetype');}:root{--a:#14100d;--b:#35e0c8;--c:#241e19;--ink:#f5eee2}*{box-sizing:border-box}body{margin:0;background:var(--a);color:var(--ink);font-family:'Cabin.ttf',sans-serif;line-height:1.65}h1,h2,h3{font-family:'Bungee',sans-serif;color:var(--b)}.heroimg{width:100%;height:52vh;object-fit:cover;display:block}.in,main,footer{max-width:1000px;margin:0 auto;padding:1rem 5vw 2rem}.logo{width:230px}.btn{display:inline-block;text-decoration:none;font-family:'Bungee',sans-serif;color:var(--ink);background:var(--c);border:2px solid var(--b);padding:.7rem 1.2rem;margin:.3rem;transition:background .15s,transform .15s}.btn:hover{filter:brightness(1.18)}.btn:active{transform:translateY(3px)}.btn:focus-visible{outline:3px solid var(--b);outline-offset:4px}nav{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}main a{color:var(--b)}main a::before{content:'\1F514  ';font-size:.85em}.panel{background:var(--c);padding:.4rem 1.5rem 1.4rem;margin:1.6rem 0}.callout{border-left:8px solid var(--b);padding:.2rem 1.2rem 1rem;margin:1.2rem 0;background:rgba(0,0,0,.08)}pre{background:#22303c;color:#f5edd6;padding:1rem;overflow-x:auto}table{border-collapse:collapse}td,th{border:1px solid var(--b);padding:.35rem .8rem;text-align:left}.div{height:10px;border-top:2px solid var(--b);margin:1.4rem 0}header .in p,header h1{color:var(--c)}footer,footer p{color:var(--c)}</style>
+<title>codeintel-hardcoded-password-detector: The Carved Desk</title>
+<style>
+@font-face { font-family: "Yuji Syuku"; src: url("fonts/YujiSyuku-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Kaisei Tokumin"; src: url("fonts/KaiseiTokumin-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Kaisei Tokumin"; src: url("fonts/KaiseiTokumin-700.woff2") format("woff2"); font-weight: 700; }
+:root {
+  --paper: #f8f3e8; --cream: #eee3cd; --ink: #26221c; --soft: #66594a;
+  --accent: #7a5a1e; --deep: #3c4b63; --line: #dccfae; --card: #ffffff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: "Kaisei Tokumin", sans-serif; line-height: 1.55; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px 64px; }
+header.hero { text-align: center; padding: 52px 0 8px; }
+img.hero-logo { width: min(430px, 82vw); border-radius: 10px; box-shadow: 0 10px 34px rgba(60,48,20,.22); }
+h1, h2 { font-family: "Yuji Syuku", sans-serif; line-height: 1.15; font-weight: 400; }
+h1 { font-size: clamp(26px, 5vw, 44px); margin: 26px 0 6px; }
+.tagline { color: var(--soft); font-size: 19px; margin: 0 auto; max-width: 680px; }
+.btns { margin: 22px 0 6px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+a.btn { font-family: "Yuji Syuku", sans-serif; text-decoration: none; padding: 11px 22px; border-radius: 999px; border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+a.btn.solid { background: var(--deep); border-color: var(--deep); color: #fff; }
+figure { margin: 30px 0; }
+figure img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 8px 28px rgba(60,48,20,.22); }
+figcaption { color: var(--soft); font-size: 15px; text-align: center; margin-top: 9px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 34px 0; }
+.fact { background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 8px; padding: 14px 16px; }
+.fact b { display: block; font-family: "Yuji Syuku", sans-serif; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+section { margin: 38px 0; }
+h2 { font-size: 27px; margin: 0 0 12px; border-bottom: 2px solid var(--line); padding-bottom: 7px; }
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+pre { background: #241f16; color: #f2ead6; padding: 15px 18px; border-radius: 8px; overflow-x: auto; font-size: 14.5px; }
+table { border-collapse: collapse; width: 100%; background: var(--card); }
+th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+th { font-family: "Yuji Syuku", sans-serif; background: var(--cream); }
+.hold { background: #f8efdb; border: 1px solid #e2d0a2; border-left: 6px solid var(--accent); border-radius: 8px; padding: 16px 20px; }
+.hold h2 { border: none; padding: 0; }
+.hold ul { margin: 8px 0 4px; padding-left: 20px; }
+footer { margin-top: 52px; border-top: 2px solid var(--line); padding-top: 16px; color: var(--soft); font-size: 14.5px; text-align: center; }
+</style>
 </head>
 <body>
+<div class="wrap">
 <header class="hero">
-<img class="heroimg" src="assets/intro-banner.png" alt="Night street with no lettering: one kettle near and large in the nearest lit window with thin steam, a corner lantern, an owl on a roof ridge, cups on sills in two other lit windows, dark houses and a thin moon">
-<div class="in">
-<img class="logo" src="assets/logo.png" alt="One kettle on a small stove ring: round body, short spout, plain handle, clear lid, diner night neon on the lit side, chrome rim and handle, coffee black shadow side, and one small pink enamel chip on the lid">
-<h1>codeintel-hardcoded-password-detector</h1>
-<p>A night watch log in six watches: two patterns walk the code at 3 a.m., every value is masked with stars, and entropy is a note in the margin, never a gate.</p>
-<nav><a class="btn" href="#s0">Scan This File</a><a class="btn" href="#s1">Scan the Whole Folder</a><a class="btn" href="#s2">Send the Log to a File</a><a class="btn" href="#s3">Raise the Entropy Note</a></nav>
-</div>
+  <h1>codeintel-hardcoded-password-detector</h1>
+  <p class="tagline">The Carved Desk. A hardcoded password detector that scans a file or a directory tree for secrets written into the text, and reports each find covered: by file, key name, length, and entropy, never the value itself.</p>
+  <div class="btns">
+    <a class="btn solid" href="https://github.com/ShadowGuard-AI/codeintel-hardcoded-password-detector">The repository</a>
+    <a class="btn" href="https://github.com/ShadowGuard-AI/codeintel-hardcoded-password-detector/blob/main/main.py">main.py</a>
+  </div>
 </header>
-<main>
-<section class="panel" id="s0"><h2>What the Two Patterns Catch</h2><p>The detector scans code for hardcoded passwords and API keys. It uses two regular expressions. It works on one file or on a whole directory tree. It reports each match by file, key name, value length and entropy.</p><p>The first pattern looks for the names password, pwd, secret and key. The second looks for api_key, apikey, auth_token and token. Each name must be followed by a colon or an equals sign, and a value must follow the sign. Letter case does not matter in either search. A name inside a longer word still counts when the sign and the value follow. A comment line counts in the same way as a code line; the detector does not know the difference, and this page says so in plain terms.</p></section><div class="div"></div><section class="panel" id="s1"><h2>Stars in Place of the Value</h2><div class="callout"><h3>The Value Is Never Printed</h3><p>Each value is masked with stars. The stars match the length of the value. The value itself is never printed and never logged; the report shows the file, the key name, the value length and the entropy.</p></div><p>The README usage line reads <code>./codeintel-hardcoded-password-detector [params]</code>. It is printed in full and flagged as a placeholder. The true form stands beside it:</p><pre>python3 main.py PATH</pre><p>PATH stands for one file or one directory. It is required, and the README parameter list omits it. The settings then follow in README order: help shows help and exits, verbose turns on fuller logging, the entropy setting takes a number and defaults to 4.0, and the log file setting takes a path; without that path the log goes to standard output, and with it the log goes to the named file.</p></section><div class="div"></div><section class="panel" id="s2"><h2>Entropy Is a Note and Not a Gate</h2><p>The detector works out the Shannon entropy of each value it finds, and the figure is printed beside each match. The figure does not decide whether a match is reported: every match from the two patterns is reported at once. A second warning appears only when the entropy passes the threshold, 4.0 by default. That warning says the high entropy find may be a false positive and asks for a careful review. Entropy is not a filter in the code; it is a note added after a report has already been made.</p></section><div class="div"></div><section class="panel" id="s3"><h2>Every File Gets Sent In</h2><p>The detector walks the whole tree and sends every file to the scanner. It makes no exception for file type. A binary file fails its text read; that failure is logged as an error, and the file is not skipped in silence. A path that does not exist ends the run with exit 1. A path that is neither a file nor a directory also ends the run with exit 1. A finished scan prints a closing line saying the scanning is complete.</p></section><div class="div"></div><section class="panel" id="s4"><h2>Faults, Entered Without Repair</h2><div class="callout"><h3>Clone Line Names the Wrong House</h3><p><code>git clone https://github.com/ShadowStrikeHQ/codeintel-hardcoded-password-detector</code></p><p>The address points to ShadowStrikeHQ. It does not point to ShadowGuard-AI.</p></div><p>The licence line in the README reads <span>Copyright (c) ShadowStrikeHQ</span>. Against it stands the repository LICENSE file, which carries the MIT License. Both facts stand on this page; neither is changed to suit the other.</p><p>Repository note, marked as such: a requirements.txt file states that main.py uses only the standard library.</p></section>
-</main>
-<footer><p>The Insomniac Kettle Census. The last lit window: the kettle stands in that window, the watch has been kept, and the dark is at peace.</p></footer>
+<figure>
+  <img src="assets/intro-banner.png" alt="The carved desk lid close up at an angle, a heart and groups of tally nicks catching the raking light with the brass inkwell at the frame edge and the desk row soft behind">
+  <figcaption>Cut into the lid and darkened by age: the carving outlives the lesson.</figcaption>
+</figure>
+
+<div class="facts">
+  <div class="fact"><b>Two patterns</b>The whole detection is two case insensitive regular expressions over key names, each taking the value after a colon or equals sign</div>
+  <div class="fact"><b>Values masked</b>A find reports its file, its key name, the value masked as asterisks, its length, and its Shannon entropy</div>
+  <div class="fact"><b>Entropy advises</b>Entropy never gates a find; past the threshold it only adds a warning that the find may be a false positive</div>
+  <div class="fact"><b>Every file sent</b>Directory mode sends every file whatever its type to the text scanner, so a binary is logged as a read error rather than skipped</div>
+</div>
+<section>
+  <h2>Usage</h2>
+  <pre>python3 main.py PATH [-v] [-e 4.0] [-l LOGFILE]</pre>
+  <p>The first pattern covers the names password, pwd, secret, and key; the second covers api_key, apikey, auth_token, and token. The run exits 1 only when the path does not exist; finds never change the exit code.</p>
+<table>
+    <tr><th>Option</th><th>What it does</th></tr>
+    <tr><td><code>path</code></td><td>The file or directory tree to scan. Required. The README parameter list omits it; the code requires it.</td></tr>
+    <tr><td><code>-v</code></td><td>Verbose logging.</td></tr>
+    <tr><td><code>-e</code></td><td>The entropy threshold for the false positive warning. Default 4.0.</td></tr>
+    <tr><td><code>-l</code></td><td>Write the log to a file instead of stdout.</td></tr>
+  </table>
+</section>
+<figure>
+  <img src="assets/banner.png" alt="A row of old lift lid school desks in a quiet classroom in raking window light, the nearest lid carved with a heart and tally nicks, a brass inkwell and a plain slate on it">
+  <figcaption>The row of desks, each lid keeping what was cut into it.</figcaption>
+</figure>
+<section class="hold">
+  <h2>What the scan cannot tell you</h2>
+  <ul>
+    <li>A match means a key name and a value shape stood together in the text. Whether the value is a live secret, a placeholder, or a test fixture is not judged.</li>
+    <li>The entropy figure is advisory only: a low entropy live password is reported without the warning, and a high entropy harmless string is reported with it.</li>
+    <li>Secrets held in shapes the two patterns do not name, split across lines or built at runtime, are outside the scan entirely.</li>
+  </ul>
+</section>
+<section>
+  <h2>Requirements</h2>
+  <p>Python, standard library only. The requirements file is a comment saying so, and noting that the bandit, flake8, pylint, and pyre-check entries that stood there before were never imported or run by this tool.</p>
+</section>
+<footer>
+<p>The README of codeintel-hardcoded-password-detector names the stale ShadowStrikeHQ org in its clone URL and closes with a copyright line naming the same org; the repository carries a separate LICENSE file headed MIT License. Both are preserved exactly as printed. Site type is set in Yuji Syuku and Kaisei Tokumin, self-hosted under the SIL Open Font License.</p>
+</footer>
+</div>
 </body>
 </html>

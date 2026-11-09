@@ -4,6 +4,8 @@
 
 Night watch log treatment: the title is set in Bungee on a coffee black plate ruled as a night watch log giving the hour, with a small kettle beside this first part of the page only, and the kettle stays at punctuation size as the section marker throughout.
 
+![The oak lift lid of a school desk filling the frame, carved with a single heart and groups of tally nicks and nothing else, the brass inkwell open at its top corner](logo.png)
+
 ![A row of old lift lid school desks in a quiet classroom in raking window light, the nearest lid carved with a heart and tally nicks, a brass inkwell and a plain slate on it](banner.png)
 
 ![Night street in three bands: lit windows change rarely as one goes dark and later another lights, an owl on a roof ridge blinks at long intervals, and a kettle in the nearest window gives a thin line of steam that rises, thins, fades, and thickens briefly when the kettle sings](scene.svg)
